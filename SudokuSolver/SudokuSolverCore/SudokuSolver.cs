@@ -99,6 +99,7 @@ namespace SudokuSolverCore
                                 solved = true;
                                 return true;
                             }
+                            return true;
                         }
                 }
             }
