@@ -1,5 +1,6 @@
 ﻿using System;
 using SudokuSolverCore;
+using System.Diagnostics;
 
 namespace SudokuSolverConsole
 {
@@ -59,9 +60,40 @@ namespace SudokuSolverConsole
                             { null, null, null, null, 3, null, 7, null, 6 },
                             { null, null, null, null, null, null, null, null, null },
           };
+
+            int?[,] errorcekSudokuv2 = new int?[,]
+            {/*
+9, x, x, x, x, x, 8, x, x,
+5, x, x, x, x, 9, 1, x, x,
+2, 1, x, 8, x, x, 6, x, x,
+x, x, x, 5, x, 1, x, x, 7,
+x, x, x, 2, x, 8, x, x, x,
+3, x, x, 9, x, 6, x, x, x,
+x, x, 7, x, x, 4, x, 6, 5,
+x, x, 2, 6, x, x, x, x, 3,
+x, x, 9, x, x, x, x, x, 8*/
+                {9,null,null,   null,null,null,   8, null, null },
+                {5,null,null,   null,null, 9,     1, null, null },
+                {2, 1, null,    8, null, null,    6,  null, null },
+                { null, null, null, 5, null, 1, null, null, 7 },
+                { null, null, null, 2, null, 8, null, null, null },
+                { 3, null, null, 9, null, 6, null, null, null },
+                { null, null, 7, null, null, 4, null, 6, 5 },
+                { null, null, 2, 6, null, null, null, null, 3 },
+                { null, null, 9, null, null, null, null, null, 8 }
+
+            };
             Sudoku sudoku = new(errorcekSudoku);
             sudoku.Solve();
             sudoku.Show(Console.Out);
+            Console.WriteLine("__________");
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            sudoku = new(errorcekSudokuv2);
+            sudoku.Solve();
+            sw.Stop();
+            sudoku.Show(Console.Out);
+            Console.WriteLine("Time taken:" + sw.Elapsed);
 
 
         }
